@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Screens</string>
+    <string name="title_activity_second">MainActivity2</string>
+    <string name="button_text">Click this button for open a new screen</string>
 </resources>
