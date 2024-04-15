@@ -1,39 +1,54 @@
 
 # Rapport
 
-**Skriv din rapport här!**
-
-_Du kan ta bort all text som finns sedan tidigare_.
-
-## Följande grundsyn gäller dugga-svar:
-
-- Ett kortfattat svar är att föredra. Svar som är längre än en sida text (skärmdumpar och programkod exkluderat) är onödigt långt.
-- Svaret skall ha minst en snutt programkod.
-- Svaret skall inkludera en kort övergripande förklarande text som redogör för vad respektive snutt programkod gör eller som svarar på annan teorifråga.
-- Svaret skall ha minst en skärmdump. Skärmdumpar skall illustrera exekvering av relevant programkod. Eventuell text i skärmdumpar måste vara läsbar.
-- I de fall detta efterfrågas, dela upp delar av ditt svar i för- och nackdelar. Dina för- respektive nackdelar skall vara i form av punktlistor med kortare stycken (3-4 meningar).
-
-Programkod ska se ut som exemplet nedan. Koden måste vara korrekt indenterad då den blir lättare att läsa vilket gör det lättare att hitta syntaktiska fel.
+**Intent App**
 
 ```
-function errorCallback(error) {
-    switch(error.code) {
-        case error.PERMISSION_DENIED:
-            // Geolocation API stöds inte, gör något
-            break;
-        case error.POSITION_UNAVAILABLE:
-            // Misslyckat positionsanrop, gör något
-            break;
-        case error.UNKNOWN_ERROR:
-            // Okänt fel, gör något
-            break;
+...
+// created a button
+Button button = findViewById(R.id.button);
+
+// listening for when user clicked a button
+button.setOnClickListener( new View.OnClickListener() {
+    public void onClick(View v){
+
+        // send intent value to SecondActivity
+        Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+        intent.putExtra("name", "Charlie");
+        startActivity(intent);
     }
-}
+});
+...
 ```
+Inuti onCreate() skapas en knapp som hämtar id "button" från activity_main.xml med hjälp av findViewById() i filen MainActivity.java.
+Sedan finns funktionen som lyssnar när en användare har klickat på knappen och börjar skapa intent värde (Charlie) 
+och skickas till en klass SecondActivity från SecondActivity.java.
 
-Bilder läggs i samma mapp som markdown-filen.
+![screenshot1.png](screenshot1.png)
+Här ser ut layout med activity_main.xml.
 
-![](android.png)
+```
+...
+// created a textView
+TextView textView = findViewById(R.id.textView);
+
+// receive intent value from MainActivity
+Bundle extras = getIntent().getExtras();
+
+// check if value is not null
+if (extras != null) {
+    // get intent name
+    String name = extras.getString("name");
+    // set from an intent name to a textview
+    textView.setText(name);
+}
+...
+```
+Inuti onCreate() skapas en textView som hämtar id "textView" från activity_second.xml med hjälp av findViewById() i filen SecondActivity.java.
+Sedan hämtar intent värde och kollar om värde är inte null. Om det är sant hämtar värde "Charlie" och sätter in text till textview.
+
+![screenshot2.png](screenshot2.png)
+Här ser ut layout med activity_second.xml och visar värde med hjälp av SecondActivity.java kod.
 
 Läs gärna:
 
